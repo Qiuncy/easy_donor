@@ -1,3 +1,5 @@
+
+
 import 'package:easy_doner/map_organisation/locationController.dart';
 import 'package:get/get.dart';
 
@@ -19,7 +21,6 @@ class _MapOrganisationWidgetState extends State<MapOrganisationWidget> {
   final googleMapsController = Completer<GoogleMapController>();
   final scaffoldKey = GlobalKey<ScaffoldState>();
   final LocationController c = Get.put(LocationController());
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(

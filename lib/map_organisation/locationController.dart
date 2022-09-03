@@ -5,14 +5,17 @@ import 'package:get/get.dart';
 class LocationController extends GetxController { 
 
  LatLng initialPosition =  LatLng(0.000, 0.000);
-
+ final Set<Marker> markers = new Set();
+ 
   @override
   void onInit() {
     super.onInit();
     _determinePosition();
+    
   }
 
-  Future<void> _determinePosition() async {
+  Future<void> _determinePosition() async { 
+      getmarkers();
   bool serviceEnabled;
   LocationPermission permission;
 
@@ -37,5 +40,43 @@ class LocationController extends GetxController {
 
   Position v =  await Geolocator.getCurrentPosition();
   initialPosition = LatLng(v.latitude, v.longitude);
+
+  }
+
+  Set<Marker> getmarkers() {
+
+  markers.add(Marker( //add first marker
+  markerId: MarkerId('Your Location'),
+  position: initialPosition, //position of marker
+  infoWindow: InfoWindow( //popup info 
+    title: 'My Custom Title ',
+    snippet: 'My Custom Subtitle',
+  ),
+  icon: BitmapDescriptor.defaultMarker, //Icon for Marker
+));
+
+markers.add(Marker( //add second marker
+  markerId: MarkerId('name 1'),
+  position: LatLng(-25.98644, 28.043838), //position of marker
+  infoWindow: InfoWindow( //popup info 
+    title: 'My Custom Title ',
+    snippet: 'My Custom Subtitle',
+  ),
+  icon: BitmapDescriptor.defaultMarker, //Icon for Marker
+));
+
+markers.add(Marker( //add second marker
+  markerId: MarkerId('name 1'),
+  position: LatLng(-25.98888, 28.043838), //position of marker
+  infoWindow: InfoWindow( //popup info 
+    title: 'My Custom Title ',
+    snippet: 'My Custom Subtitle',
+  ),
+  icon: BitmapDescriptor.defaultMarker, //Icon for Marker
+));
+
+ return markers;
 }
+
+
 }

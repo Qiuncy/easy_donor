@@ -34,7 +34,8 @@ class _MapOrganisationWidgetState extends State<MapOrganisationWidget> {
                   children: [
                     FlutterFlowGoogleMap(
                       controller: googleMapsController,
-                      onCameraIdle: (latLng) => googleMapsCenter = latLng,
+                      onCameraIdle: (latLng) =>
+                          setState(() => googleMapsCenter = latLng),
                       initialLocation: googleMapsCenter ??=
                           LatLng(13.106061, -59.613158),
                       markerColor: GoogleMarkerColor.violet,
@@ -46,7 +47,7 @@ class _MapOrganisationWidgetState extends State<MapOrganisationWidget> {
                       showZoomControls: true,
                       showLocation: true,
                       showCompass: false,
-                      showMapToolbar: false,
+                      showMapToolbar: true,
                       showTraffic: false,
                       centerMapOnMarkerTap: true,
                     ),

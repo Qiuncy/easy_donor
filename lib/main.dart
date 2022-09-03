@@ -86,6 +86,7 @@ class _NavBarPageState extends State<NavBarPage> {
       'donations': DonationsWidget(),
       'map_organisation': MapOrganisationWidget(),
       'profile': ProfileWidget(),
+      'user_dashboard': UserDashboardWidget(),
     };
     final currentIndex = tabs.keys.toList().indexOf(_currentPageName);
     return Scaffold(
@@ -141,6 +142,14 @@ class _NavBarPageState extends State<NavBarPage> {
               size: 24,
             ),
             label: 'profile',
+            tooltip: '',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.home_outlined,
+              size: 24,
+            ),
+            label: 'home',
             tooltip: '',
           )
         ],

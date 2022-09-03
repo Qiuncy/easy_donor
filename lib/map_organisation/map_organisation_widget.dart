@@ -1,3 +1,6 @@
+import 'package:easy_doner/map_organisation/locationController.dart';
+import 'package:get/get.dart';
+
 import '../flutter_flow/flutter_flow_google_map.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
@@ -15,6 +18,7 @@ class _MapOrganisationWidgetState extends State<MapOrganisationWidget> {
   LatLng? googleMapsCenter;
   final googleMapsController = Completer<GoogleMapController>();
   final scaffoldKey = GlobalKey<ScaffoldState>();
+  final LocationController c = Get.put(LocationController());
 
   @override
   Widget build(BuildContext context) {
@@ -36,11 +40,11 @@ class _MapOrganisationWidgetState extends State<MapOrganisationWidget> {
                       controller: googleMapsController,
                       onCameraIdle: (latLng) => googleMapsCenter = latLng,
                       initialLocation: googleMapsCenter ??=
-                          LatLng(13.106061, -59.613158),
+                          LatLng(c.initialPosition.latitude, c.initialPosition.longitude),
                       markerColor: GoogleMarkerColor.violet,
-                      mapType: MapType.normal,
+                      mapType: MapType.hybrid,
                       style: GoogleMapStyle.standard,
-                      initialZoom: 14,
+                      initialZoom: 12,
                       allowInteraction: true,
                       allowZoom: true,
                       showZoomControls: true,
@@ -60,3 +64,5 @@ class _MapOrganisationWidgetState extends State<MapOrganisationWidget> {
     );
   }
 }
+
+

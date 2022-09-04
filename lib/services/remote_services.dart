@@ -58,5 +58,38 @@ class RemoteServices {
       }
   }
 
-  
+  //benficiary stuff
+  static Future<List<Category>?> fetchBeneficiaryCategory() async {
+    var response = await client.get(Uri.parse("https://easydonor.mrndemo.co.za/api/beneficiary/interests"),
+    headers: {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+      'Authorization': 'Bearer 74|7MI42UrVN9kYqRcU2yisVpREaKZypYoNYHCaDiN6',
+      });
+
+      if(response.statusCode == 200){
+          var jsonString = response.body;
+          return categoryFromJson(jsonString);
+
+      }else{
+        return null;
+      }
+  }
+
+  static Future<List<Category>?> fetchBeneficiaryInstitution() async {
+    var response = await client.get(Uri.parse("https://easydonor.mrndemo.co.za/api/beneficiary/institutions"),
+    headers: {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+      'Authorization': 'Bearer 74|7MI42UrVN9kYqRcU2yisVpREaKZypYoNYHCaDiN6',
+      });
+
+      if(response.statusCode == 200){
+          var jsonString = response.body;
+          return categoryFromJson(jsonString);
+
+      }else{
+        return null;
+      }
+  }
 }

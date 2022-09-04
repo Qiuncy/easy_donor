@@ -1,9 +1,8 @@
+import 'package:easy_doner/components/drawerWidget.dart';
 import '../components/account_widget.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
-import '../flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class CategoryWidget extends StatefulWidget {
   const CategoryWidget({Key? key}) : super(key: key);
@@ -430,6 +429,10 @@ class _CategoryWidgetState extends State<CategoryWidget> {
           ),
         ),
       ),
+    
+    
+
+    drawer: DrawerWidget(),
     );
   }
 }

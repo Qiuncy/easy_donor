@@ -1,9 +1,10 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:get/get.dart';
+import 'dashboard/dashbordController.dart';
 import 'flutter_flow/flutter_flow_theme.dart';
 import 'flutter_flow/internationalization.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'index.dart';
 
 void main() async {
@@ -37,7 +38,7 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
       title: 'Easy Doner',
       localizationsDelegates: [
         FFLocalizationsDelegate(),
@@ -55,95 +56,99 @@ class _MyAppState extends State<MyApp> {
   }
 }
 
-class NavBarPage extends StatefulWidget {
-  NavBarPage({Key? key, this.initialPage, this.page}) : super(key: key);
 
-  final String? initialPage;
-  final Widget? page;
 
-  @override
-  _NavBarPageState createState() => _NavBarPageState();
-}
+class NavBarPage extends StatelessWidget {
+  final TextStyle unselectedLabelStyle = TextStyle(
+      color: Colors.white.withOpacity(0.5),
+      fontWeight: FontWeight.w500,
+      fontSize: 12);
 
-/// This is the private State class that goes with NavBarPage.
-class _NavBarPageState extends State<NavBarPage> {
-  String _currentPageName = 'dashboard';
-  late Widget? _currentPage;
+  final TextStyle selectedLabelStyle =
+      TextStyle(color: Colors.white, fontWeight: FontWeight.w500, fontSize: 12);
 
-  @override
-  void initState() {
-    super.initState();
-    _currentPageName = widget.initialPage ?? _currentPageName;
-    _currentPage = widget.page;
+  buildBottomNavigationMenu(context, NavBarPageController) {
+    return Obx(() => MediaQuery(
+        data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
+        child: SizedBox(
+          height: 54,
+          child: BottomNavigationBar(
+            showUnselectedLabels: true,
+            showSelectedLabels: true,
+            onTap: NavBarPageController.changeTabIndex,
+            currentIndex: NavBarPageController.tabIndex.value,
+            backgroundColor: Color.fromRGBO(36, 54, 101, 1.0),
+            unselectedItemColor: Colors.white.withOpacity(0.5),
+            selectedItemColor: Colors.white,
+            unselectedLabelStyle: unselectedLabelStyle,
+            selectedLabelStyle: selectedLabelStyle,
+            items: [
+              BottomNavigationBarItem(
+                icon: Container(
+                  margin: EdgeInsets.only(bottom: 7),
+                  child: Icon(
+                    Icons.home,
+                    size: 20.0,
+                  ),
+                ),
+                label: 'Home',
+                backgroundColor: Color.fromRGBO(36, 54, 101, 1.0),
+              ),
+              BottomNavigationBarItem(
+                icon: Container(
+                  margin: EdgeInsets.only(bottom: 7),
+                  child: Icon(
+                    Icons.search,
+                    size: 20.0,
+                  ),
+                ),
+                label: 'Explore',
+                backgroundColor: Color.fromRGBO(36, 54, 101, 1.0),
+              ),
+              BottomNavigationBarItem(
+                icon: Container(
+                  margin: EdgeInsets.only(bottom: 7),
+                  child: Icon(
+                    Icons.location_history,
+                    size: 20.0,
+                  ),
+                ),
+                label: 'Places',
+                backgroundColor: Color.fromRGBO(36, 54, 101, 1.0),
+              ),
+              BottomNavigationBarItem(
+                icon: Container(
+                  margin: EdgeInsets.only(bottom: 7),
+                  child: Icon(
+                    Icons.settings,
+                    size: 20.0,
+                  ),
+                ),
+                label: 'Settings',
+                backgroundColor: Color.fromRGBO(36, 54, 101, 1.0),
+              ),
+            ],
+          ),
+        )));
   }
 
   @override
   Widget build(BuildContext context) {
-    final tabs = {
-      'dashboard': DashboardWidget(),
-      'category': CategoryWidget(),
-      'donations': DonationsWidget(),
-      'map_organisation': MapOrganisationWidget(),
-      'profile': ProfileWidget(),
-    };
-    final currentIndex = tabs.keys.toList().indexOf(_currentPageName);
-    return Scaffold(
-      body: _currentPage ?? tabs[_currentPageName],
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: currentIndex,
-        onTap: (i) => setState(() {
-          _currentPage = null;
-          _currentPageName = tabs.keys.toList()[i];
-        }),
-        backgroundColor: FlutterFlowTheme.of(context).primaryBtnText,
-        selectedItemColor: FlutterFlowTheme.of(context).primaryColor,
-        unselectedItemColor: Color(0x8A000000),
-        showSelectedLabels: true,
-        showUnselectedLabels: true,
-        type: BottomNavigationBarType.fixed,
-        items: <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: FaIcon(
-              FontAwesomeIcons.gripHorizontal,
-              size: 24,
-            ),
-            label: 'dashboard',
-            tooltip: '',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(
-              Icons.category_outlined,
-              size: 24,
-            ),
-            label: 'category',
-            tooltip: '',
-          ),
-          BottomNavigationBarItem(
-            icon: FaIcon(
-              FontAwesomeIcons.handHoldingHeart,
-              size: 24,
-            ),
-            label: 'donatetions',
-            tooltip: '',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(
-              Icons.search,
-              size: 24,
-            ),
-            label: 'Browse Org',
-            tooltip: '',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(
-              Icons.person,
-              size: 24,
-            ),
-            label: 'profile',
-            tooltip: '',
-          )
-        ],
-      ),
-    );
+    final DashboardController dashboardController =Get.put(DashboardController(), permanent: false);
+    return SafeArea(
+        child: Scaffold(
+      bottomNavigationBar:
+          buildBottomNavigationMenu(context, dashboardController),
+      body: Obx(() => IndexedStack(
+            index: dashboardController.tabIndex.value,
+            children: [
+              DashboardWidget(),
+       CategoryWidget(),
+       DonationsWidget(),
+      MapOrganisationWidget(),
+       ProfileWidget(),
+            ],
+          )),
+    ));
   }
 }

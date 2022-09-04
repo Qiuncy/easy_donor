@@ -1,13 +1,8 @@
-
-
 import 'package:easy_doner/map_organisation/locationController.dart';
 import 'package:get/get.dart';
-
 import '../flutter_flow/flutter_flow_google_map.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
-import '../flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class MapOrganisationWidget extends StatefulWidget {
   const MapOrganisationWidget({Key? key}) : super(key: key);
@@ -34,7 +29,7 @@ class _MapOrganisationWidgetState extends State<MapOrganisationWidget> {
             mainAxisSize: MainAxisSize.max,
             children: [
               Container(
-                height: MediaQuery.of(context).size.height * 1,
+                height: MediaQuery.of(context).size.height * 0.88,
                 child: Stack(
                   children: [
                     FlutterFlowGoogleMap(

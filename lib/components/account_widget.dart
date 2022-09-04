@@ -1,7 +1,5 @@
-import '../flutter_flow/flutter_flow_theme.dart';
-import '../flutter_flow/flutter_flow_util.dart';
+
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class AccountWidget extends StatefulWidget {
   const AccountWidget({Key? key}) : super(key: key);
@@ -13,22 +11,18 @@ class AccountWidget extends StatefulWidget {
 class _AccountWidgetState extends State<AccountWidget> {
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisSize: MainAxisSize.max,
+    return Expanded(
+      child: Row(
       children: [
-        Icon(
-          Icons.person,
-          color: FlutterFlowTheme.of(context).primaryBackground,
-          size: 34,
-        ),
-        Text(
-          'PROFILE',
-          style: FlutterFlowTheme.of(context).bodyText1.override(
-                fontFamily: 'Montserrat',
-                color: FlutterFlowTheme.of(context).primaryBtnText,
-              ),
-        ),
+
+        IconButton(
+          onPressed: () => Scaffold.of(context).openDrawer(),
+          icon: Icon(Icons.menu)
+          ),
+       
+       
       ],
-    );
+    )
+      );
   }
 }

@@ -234,7 +234,7 @@ class _DonationsWidgetState extends State<DonationsWidget> {
                       ),
                     ),
                     Container(
-                      height: MediaQuery.of(context).size.height * 0.6,
+                      height: MediaQuery.of(context).size.height * 0.59,
                       child: Stack(
                         children: [
                           Padding(
@@ -647,7 +647,7 @@ class _DonationsWidgetState extends State<DonationsWidget> {
                                                                             .spaceEvenly,
                                                                     children: [
                                                                       Text(
-                                                                        'Not yet delivered',
+                                                                        'pending',
                                                                         style: FlutterFlowTheme.of(context)
                                                                             .bodyText1
                                                                             .override(

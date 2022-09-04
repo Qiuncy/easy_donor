@@ -15,7 +15,6 @@ class LocationController extends GetxController {
   }
 
   Future<void> _determinePosition() async { 
-      getmarkers();
   bool serviceEnabled;
   LocationPermission permission;
 

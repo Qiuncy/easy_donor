@@ -1,10 +1,13 @@
+import 'package:easy_doner/components/drawerWidget.dart';
+import 'package:easy_doner/dashboard/categoryController.dart';
+import 'package:easy_doner/dashboard/instituationsController.dart';
+import 'package:get/get.dart';
+
 import '../components/account_widget.dart';
 import '../components/donate_widget.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
-import '../flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class DashboardWidget extends StatefulWidget {
   const DashboardWidget({Key? key}) : super(key: key);
@@ -15,13 +18,17 @@ class DashboardWidget extends StatefulWidget {
 
 class _DashboardWidgetState extends State<DashboardWidget> {
   final scaffoldKey = GlobalKey<ScaffoldState>();
-
+  final CategoryController categoryController = Get.put(CategoryController());
+  final InstituationController instituationController = Get.put(InstituationController());
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+
+
+
       key: scaffoldKey,
       appBar: PreferredSize(
-        preferredSize: Size.fromHeight(40),
+        preferredSize: Size.fromHeight(60),
         child: AppBar(
           backgroundColor: FlutterFlowTheme.of(context).primaryColor,
           automaticallyImplyLeading: false,
@@ -66,86 +73,7 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                     child: Row(
                       mainAxisSize: MainAxisSize.max,
                       children: [
-                        Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(10, 0, 10, 0),
-                          child: Column(
-                            mainAxisSize: MainAxisSize.max,
-                            children: [
-                              Container(
-                                width: 80,
-                                height: 80,
-                                decoration: BoxDecoration(
-                                  color: Color(0xFF824588),
-                                  borderRadius: BorderRadius.circular(10),
-                                ),
-                                child: Row(
-                                  mainAxisSize: MainAxisSize.max,
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceEvenly,
-                                  children: [
-                                    FaIcon(
-                                      FontAwesomeIcons.briefcaseMedical,
-                                      color: FlutterFlowTheme.of(context)
-                                          .primaryBackground,
-                                      size: 30,
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              Text(
-                                'FOOD',
-                                style: FlutterFlowTheme.of(context)
-                                    .bodyText1
-                                    .override(
-                                      fontFamily: 'Montserrat',
-                                      color: FlutterFlowTheme.of(context)
-                                          .primaryBtnText,
-                                      fontWeight: FontWeight.normal,
-                                    ),
-                              ),
-                            ],
-                          ),
-                        ),
-                        Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(10, 0, 10, 0),
-                          child: Column(
-                            mainAxisSize: MainAxisSize.max,
-                            children: [
-                              Container(
-                                width: 80,
-                                height: 80,
-                                decoration: BoxDecoration(
-                                  color: Color(0xFF824588),
-                                  borderRadius: BorderRadius.circular(10),
-                                ),
-                                child: Row(
-                                  mainAxisSize: MainAxisSize.max,
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceEvenly,
-                                  children: [
-                                    Icon(
-                                      Icons.grass,
-                                      color: FlutterFlowTheme.of(context)
-                                          .primaryBackground,
-                                      size: 30,
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              Text(
-                                'NATURE',
-                                style: FlutterFlowTheme.of(context)
-                                    .bodyText1
-                                    .override(
-                                      fontFamily: 'Montserrat',
-                                      color: FlutterFlowTheme.of(context)
-                                          .primaryBtnText,
-                                      fontWeight: FontWeight.normal,
-                                    ),
-                              ),
-                            ],
-                          ),
-                        ),
+                       for(int i = 0; i < categoryController.categoryList.length; i++)
                         Padding(
                           padding: EdgeInsetsDirectional.fromSTEB(10, 0, 10, 0),
                           child: Column(
@@ -173,7 +101,7 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                 ),
                               ),
                               Text(
-                                'EDUCATION',
+                                categoryController.categoryList[i].name.toString(),
                                 style: FlutterFlowTheme.of(context)
                                     .bodyText1
                                     .override(
@@ -263,7 +191,7 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                         padding: EdgeInsetsDirectional.fromSTEB(
                                             0, 20, 0, 20),
                                         child: Text(
-                                          'NEARNY ORGANISATIONS ',
+                                          'NEARY ORGANISATIONS ',
                                           style: FlutterFlowTheme.of(context)
                                               .bodyText1
                                               .override(
@@ -275,6 +203,7 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                     ],
                                   ),
                                 ),
+                                for(final institution in instituationController.instituationList)
                                 Padding(
                                   padding: EdgeInsetsDirectional.fromSTEB(
                                       10, 0, 10, 20),
@@ -306,7 +235,7 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                                   CrossAxisAlignment.start,
                                               children: [
                                                 Text(
-                                                  'CHILDREN\'S HOME',
+                                                  institution.name.toString(),
                                                   style: FlutterFlowTheme.of(
                                                           context)
                                                       .bodyText1
@@ -318,7 +247,7 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                                       ),
                                                 ),
                                                 Text(
-                                                  'Money ',
+                                                  institution.email.toString(),
                                                   style: FlutterFlowTheme.of(
                                                           context)
                                                       .bodyText1
@@ -330,7 +259,7 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                                       ),
                                                 ),
                                                 Text(
-                                                  'Diepsloot',
+                                                  institution.description.substring(20),
                                                   style: FlutterFlowTheme.of(
                                                           context)
                                                       .bodyText1
@@ -348,229 +277,7 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                       ),
                                     ],
                                   ),
-                                ),
-                                Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      10, 0, 10, 20),
-                                  child: Row(
-                                    mainAxisSize: MainAxisSize.max,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Row(
-                                        mainAxisSize: MainAxisSize.max,
-                                        children: [
-                                          Image.network(
-                                            'https://picsum.photos/seed/804/600',
-                                            width: 100,
-                                            height: 100,
-                                            fit: BoxFit.cover,
-                                          ),
-                                        ],
-                                      ),
-                                      Expanded(
-                                        child: Padding(
-                                          padding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  10, 10, 0, 0),
-                                          child: SingleChildScrollView(
-                                            child: Column(
-                                              mainAxisSize: MainAxisSize.max,
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
-                                              children: [
-                                                Text(
-                                                  'CHILDREN\'S HOME',
-                                                  style: FlutterFlowTheme.of(
-                                                          context)
-                                                      .bodyText1
-                                                      .override(
-                                                        fontFamily:
-                                                            'Montserrat',
-                                                        fontWeight:
-                                                            FontWeight.normal,
-                                                      ),
-                                                ),
-                                                Text(
-                                                  'Money ',
-                                                  style: FlutterFlowTheme.of(
-                                                          context)
-                                                      .bodyText1
-                                                      .override(
-                                                        fontFamily:
-                                                            'Montserrat',
-                                                        fontWeight:
-                                                            FontWeight.normal,
-                                                      ),
-                                                ),
-                                                Text(
-                                                  'Diepsloot',
-                                                  style: FlutterFlowTheme.of(
-                                                          context)
-                                                      .bodyText1
-                                                      .override(
-                                                        fontFamily:
-                                                            'Montserrat',
-                                                        fontWeight:
-                                                            FontWeight.normal,
-                                                      ),
-                                                ),
-                                              ],
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                                Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      10, 0, 10, 20),
-                                  child: Row(
-                                    mainAxisSize: MainAxisSize.max,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Row(
-                                        mainAxisSize: MainAxisSize.max,
-                                        children: [
-                                          Image.network(
-                                            'https://picsum.photos/seed/804/600',
-                                            width: 100,
-                                            height: 100,
-                                            fit: BoxFit.cover,
-                                          ),
-                                        ],
-                                      ),
-                                      Expanded(
-                                        child: Padding(
-                                          padding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  10, 10, 0, 0),
-                                          child: SingleChildScrollView(
-                                            child: Column(
-                                              mainAxisSize: MainAxisSize.max,
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
-                                              children: [
-                                                Text(
-                                                  'CHILDREN\'S HOME',
-                                                  style: FlutterFlowTheme.of(
-                                                          context)
-                                                      .bodyText1
-                                                      .override(
-                                                        fontFamily:
-                                                            'Montserrat',
-                                                        fontWeight:
-                                                            FontWeight.normal,
-                                                      ),
-                                                ),
-                                                Text(
-                                                  'Money ',
-                                                  style: FlutterFlowTheme.of(
-                                                          context)
-                                                      .bodyText1
-                                                      .override(
-                                                        fontFamily:
-                                                            'Montserrat',
-                                                        fontWeight:
-                                                            FontWeight.normal,
-                                                      ),
-                                                ),
-                                                Text(
-                                                  'Diepsloot',
-                                                  style: FlutterFlowTheme.of(
-                                                          context)
-                                                      .bodyText1
-                                                      .override(
-                                                        fontFamily:
-                                                            'Montserrat',
-                                                        fontWeight:
-                                                            FontWeight.normal,
-                                                      ),
-                                                ),
-                                              ],
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                                Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      10, 0, 10, 20),
-                                  child: Row(
-                                    mainAxisSize: MainAxisSize.max,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Row(
-                                        mainAxisSize: MainAxisSize.max,
-                                        children: [
-                                          Image.network(
-                                            'https://picsum.photos/seed/804/600',
-                                            width: 100,
-                                            height: 100,
-                                            fit: BoxFit.cover,
-                                          ),
-                                        ],
-                                      ),
-                                      Expanded(
-                                        child: Padding(
-                                          padding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  10, 10, 0, 0),
-                                          child: SingleChildScrollView(
-                                            child: Column(
-                                              mainAxisSize: MainAxisSize.max,
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
-                                              children: [
-                                                Text(
-                                                  'CHILDREN\'S HOME',
-                                                  style: FlutterFlowTheme.of(
-                                                          context)
-                                                      .bodyText1
-                                                      .override(
-                                                        fontFamily:
-                                                            'Montserrat',
-                                                        fontWeight:
-                                                            FontWeight.normal,
-                                                      ),
-                                                ),
-                                                Text(
-                                                  'Money ',
-                                                  style: FlutterFlowTheme.of(
-                                                          context)
-                                                      .bodyText1
-                                                      .override(
-                                                        fontFamily:
-                                                            'Montserrat',
-                                                        fontWeight:
-                                                            FontWeight.normal,
-                                                      ),
-                                                ),
-                                                Text(
-                                                  'Diepsloot',
-                                                  style: FlutterFlowTheme.of(
-                                                          context)
-                                                      .bodyText1
-                                                      .override(
-                                                        fontFamily:
-                                                            'Montserrat',
-                                                        fontWeight:
-                                                            FontWeight.normal,
-                                                      ),
-                                                ),
-                                              ],
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
+                                ), 
                               ],
                             ),
                           ),
@@ -584,6 +291,8 @@ class _DashboardWidgetState extends State<DashboardWidget> {
           ),
         ),
       ),
+    
+    drawer: DrawerWidget(),    
     );
   }
 }

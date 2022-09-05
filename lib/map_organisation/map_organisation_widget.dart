@@ -36,11 +36,11 @@ class _MapOrganisationWidgetState extends State<MapOrganisationWidget> {
                       controller: googleMapsController,
                       onCameraIdle: (latLng) => googleMapsCenter = latLng,
                       initialLocation: googleMapsCenter ??=
-                          LatLng(c.initialPosition.latitude, c.initialPosition.longitude),
+                          LatLng(-26.14768, 27.92828),
                       markerColor: GoogleMarkerColor.violet,
                       mapType: MapType.hybrid,
                       style: GoogleMapStyle.standard,
-                      initialZoom: 12,
+                      initialZoom: 17,
                       allowInteraction: true,
                       allowZoom: true,
                       showZoomControls: true,

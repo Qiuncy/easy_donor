@@ -1,10 +1,11 @@
 
 import 'package:easy_doner/index.dart';
+import 'package:easy_doner/login/loginController.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class DrawerWidget extends StatelessWidget {
-  
+ 
   const DrawerWidget({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
@@ -21,17 +22,11 @@ class DrawerWidget extends StatelessWidget {
             ListTile(
               title: const Text('Dashboard'),
               onTap: () {
-                if(true){
+                if(LoginController.type == "Donor"){
                 Get.to(()=> DashboardWidget());
                 }else{
                   Get.to(()=> UserDashboardWidget());
                 }
-              },
-            ),
-            ListTile(
-              title: const Text('Category'),
-              onTap: () {
-                Get.to(()=> CategoryWidget());
               },
             ),
             ListTile(
@@ -44,6 +39,13 @@ class DrawerWidget extends StatelessWidget {
               title: const Text('Browse'),
               onTap: () {
                   Get.to(()=> MapOrganisationWidget()); 
+              },
+            ),
+            ListTile(
+              title: const Text('logout'),
+              onTap: () {
+                LoginController.accessToken = false;
+                  Get.to(()=> HomePageWidget()); 
               },
             ),
             

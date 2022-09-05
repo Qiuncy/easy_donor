@@ -6,6 +6,7 @@ import 'dashboard/dashbordController.dart';
 import 'flutter_flow/flutter_flow_theme.dart';
 import 'flutter_flow/internationalization.dart';
 import 'index.dart';
+import 'login/loginController.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -135,6 +136,7 @@ class NavBarPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final DashboardController dashboardController =Get.put(DashboardController(), permanent: false);
+  final LoginController c = Get.put(LoginController());
     return SafeArea(
         child: Scaffold(
       bottomNavigationBar:

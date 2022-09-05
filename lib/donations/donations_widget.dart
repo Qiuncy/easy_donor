@@ -1,10 +1,12 @@
+import 'package:easy_doner/components/drawerWidget.dart';
+import 'package:easy_doner/donations/donationController.dart';
+import 'package:get/get.dart';
+
 import '../components/account_widget.dart';
 import '../components/donate_widget.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
-import '../flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class DonationsWidget extends StatefulWidget {
   const DonationsWidget({Key? key}) : super(key: key);
@@ -15,6 +17,8 @@ class DonationsWidget extends StatefulWidget {
 
 class _DonationsWidgetState extends State<DonationsWidget> {
   final scaffoldKey = GlobalKey<ScaffoldState>();
+  final DonationsController donationsController = Get.put(DonationsController());
+
 
   @override
   Widget build(BuildContext context) {
@@ -188,47 +192,7 @@ class _DonationsWidgetState extends State<DonationsWidget> {
                                 ],
                               ),
                             ),
-                            Padding(
-                              padding:
-                                  EdgeInsetsDirectional.fromSTEB(10, 0, 10, 0),
-                              child: Column(
-                                mainAxisSize: MainAxisSize.max,
-                                children: [
-                                  Container(
-                                    width: 80,
-                                    height: 80,
-                                    decoration: BoxDecoration(
-                                      color: Color(0xFF824588),
-                                      borderRadius: BorderRadius.circular(10),
-                                    ),
-                                    child: Row(
-                                      mainAxisSize: MainAxisSize.max,
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceEvenly,
-                                      children: [
-                                        Icon(
-                                          Icons.read_more,
-                                          color: FlutterFlowTheme.of(context)
-                                              .primaryBackground,
-                                          size: 30,
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                  Text(
-                                    'MORE',
-                                    style: FlutterFlowTheme.of(context)
-                                        .bodyText1
-                                        .override(
-                                          fontFamily: 'Montserrat',
-                                          color: FlutterFlowTheme.of(context)
-                                              .primaryBtnText,
-                                          fontWeight: FontWeight.normal,
-                                        ),
-                                  ),
-                                ],
-                              ),
-                            ),
+                            
                           ],
                         ),
                       ),
@@ -282,6 +246,7 @@ class _DonationsWidgetState extends State<DonationsWidget> {
                                           ),
                                         ],
                                       ),
+                                      for(int i = 0; i < donationsController.donationList.length;  i++ )
                                       Padding(
                                         padding: EdgeInsetsDirectional.fromSTEB(
                                             0, 10, 0, 20),
@@ -338,7 +303,7 @@ class _DonationsWidgetState extends State<DonationsWidget> {
                                                                 .start,
                                                         children: [
                                                           Text(
-                                                            'SECEND HAND CLOTHES ',
+                                                           donationsController.donationList[i].item.toString(),
                                                             style: FlutterFlowTheme
                                                                     .of(context)
                                                                 .bodyText1
@@ -350,19 +315,7 @@ class _DonationsWidgetState extends State<DonationsWidget> {
                                                                           .normal,
                                                                 ),
                                                           ),
-                                                          Text(
-                                                            'Diepsloot',
-                                                            style: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .bodyText1
-                                                                .override(
-                                                                  fontFamily:
-                                                                      'Montserrat',
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .normal,
-                                                                ),
-                                                          ),
+                                                          
                                                           Row(
                                                             mainAxisSize:
                                                                 MainAxisSize
@@ -384,7 +337,7 @@ class _DonationsWidgetState extends State<DonationsWidget> {
                                                                             0,
                                                                             0),
                                                                 child: Text(
-                                                                  'AFRIKA TUKKUN',
+                                                                  donationsController.donationList[i].institution.name.toString(),
                                                                   style: FlutterFlowTheme.of(
                                                                           context)
                                                                       .bodyText1,
@@ -400,8 +353,8 @@ class _DonationsWidgetState extends State<DonationsWidget> {
                                                                 MainAxisAlignment
                                                                     .spaceBetween,
                                                             children: [
-                                                              Text(
-                                                                '20 JUNE 2022',
+                                                              Text(  
+                                        donationsController.donationList[i].createdAt.toString().substring(0,10),
                                                                 style: FlutterFlowTheme.of(
                                                                         context)
                                                                     .bodyText1,
@@ -452,7 +405,7 @@ class _DonationsWidgetState extends State<DonationsWidget> {
                                                                             .spaceEvenly,
                                                                     children: [
                                                                       Text(
-                                                                        'CLOSED',
+                                                                        donationsController.donationList[i].status.toString(),
                                                                         style: FlutterFlowTheme.of(context)
                                                                             .bodyText1
                                                                             .override(
@@ -477,396 +430,7 @@ class _DonationsWidgetState extends State<DonationsWidget> {
                                           ),
                                         ),
                                       ),
-                                      Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            0, 10, 0, 20),
-                                        child: Container(
-                                          width:
-                                              MediaQuery.of(context).size.width,
-                                          decoration: BoxDecoration(
-                                            gradient: LinearGradient(
-                                              colors: [
-                                                Color(0xFFCCD0DB),
-                                                Color(0xFFF4F7FC)
-                                              ],
-                                              stops: [0.2, 1],
-                                              begin: AlignmentDirectional(0, 1),
-                                              end: AlignmentDirectional(0, -1),
-                                            ),
-                                            borderRadius:
-                                                BorderRadius.circular(10),
-                                          ),
-                                          child: Padding(
-                                            padding:
-                                                EdgeInsetsDirectional.fromSTEB(
-                                                    10, 0, 10, 10),
-                                            child: Row(
-                                              mainAxisSize: MainAxisSize.max,
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
-                                              children: [
-                                                Row(
-                                                  mainAxisSize:
-                                                      MainAxisSize.max,
-                                                  children: [
-                                                    Image.network(
-                                                      'https://picsum.photos/seed/804/600',
-                                                      width: 100,
-                                                      height: 100,
-                                                      fit: BoxFit.cover,
-                                                    ),
-                                                  ],
-                                                ),
-                                                Expanded(
-                                                  child: Padding(
-                                                    padding:
-                                                        EdgeInsetsDirectional
-                                                            .fromSTEB(
-                                                                10, 10, 0, 0),
-                                                    child:
-                                                        SingleChildScrollView(
-                                                      child: Column(
-                                                        mainAxisSize:
-                                                            MainAxisSize.max,
-                                                        crossAxisAlignment:
-                                                            CrossAxisAlignment
-                                                                .start,
-                                                        children: [
-                                                          Text(
-                                                            'SECEND HAND CLOTHES ',
-                                                            style: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .bodyText1
-                                                                .override(
-                                                                  fontFamily:
-                                                                      'Montserrat',
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .normal,
-                                                                ),
-                                                          ),
-                                                          Text(
-                                                            'Diepsloot',
-                                                            style: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .bodyText1
-                                                                .override(
-                                                                  fontFamily:
-                                                                      'Montserrat',
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .normal,
-                                                                ),
-                                                          ),
-                                                          Row(
-                                                            mainAxisSize:
-                                                                MainAxisSize
-                                                                    .max,
-                                                            children: [
-                                                              FaIcon(
-                                                                FontAwesomeIcons
-                                                                    .globe,
-                                                                color: Colors
-                                                                    .black,
-                                                                size: 24,
-                                                              ),
-                                                              Padding(
-                                                                padding:
-                                                                    EdgeInsetsDirectional
-                                                                        .fromSTEB(
-                                                                            10,
-                                                                            0,
-                                                                            0,
-                                                                            0),
-                                                                child: Text(
-                                                                  'AFRIKA TUKKUN',
-                                                                  style: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyText1,
-                                                                ),
-                                                              ),
-                                                            ],
-                                                          ),
-                                                          Row(
-                                                            mainAxisSize:
-                                                                MainAxisSize
-                                                                    .max,
-                                                            mainAxisAlignment:
-                                                                MainAxisAlignment
-                                                                    .spaceBetween,
-                                                            children: [
-                                                              Text(
-                                                                '20 JUNE 2022',
-                                                                style: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyText1,
-                                                              ),
-                                                              Padding(
-                                                                padding:
-                                                                    EdgeInsetsDirectional
-                                                                        .fromSTEB(
-                                                                            10,
-                                                                            0,
-                                                                            0,
-                                                                            0),
-                                                                child:
-                                                                    Container(
-                                                                  width: 100,
-                                                                  height: 20,
-                                                                  decoration:
-                                                                      BoxDecoration(
-                                                                    gradient:
-                                                                        LinearGradient(
-                                                                      colors: [
-                                                                        FlutterFlowTheme.of(context)
-                                                                            .primaryColor,
-                                                                        FlutterFlowTheme.of(context)
-                                                                            .secondaryText
-                                                                      ],
-                                                                      stops: [
-                                                                        0,
-                                                                        1
-                                                                      ],
-                                                                      begin:
-                                                                          AlignmentDirectional(
-                                                                              0,
-                                                                              -1),
-                                                                      end: AlignmentDirectional(
-                                                                          0, 1),
-                                                                    ),
-                                                                    borderRadius:
-                                                                        BorderRadius.circular(
-                                                                            10),
-                                                                  ),
-                                                                  child: Row(
-                                                                    mainAxisSize:
-                                                                        MainAxisSize
-                                                                            .max,
-                                                                    mainAxisAlignment:
-                                                                        MainAxisAlignment
-                                                                            .spaceEvenly,
-                                                                    children: [
-                                                                      Text(
-                                                                        'pending',
-                                                                        style: FlutterFlowTheme.of(context)
-                                                                            .bodyText1
-                                                                            .override(
-                                                                              fontFamily: 'Montserrat',
-                                                                              color: FlutterFlowTheme.of(context).primaryBackground,
-                                                                              fontWeight: FontWeight.normal,
-                                                                            ),
-                                                                      ),
-                                                                    ],
-                                                                  ),
-                                                                ),
-                                                              ),
-                                                            ],
-                                                          ),
-                                                        ],
-                                                      ),
-                                                    ),
-                                                  ),
-                                                ),
-                                              ],
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                      Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            0, 10, 0, 20),
-                                        child: Container(
-                                          width:
-                                              MediaQuery.of(context).size.width,
-                                          decoration: BoxDecoration(
-                                            gradient: LinearGradient(
-                                              colors: [
-                                                Color(0xFFCCD0DB),
-                                                Color(0xFFF4F7FC)
-                                              ],
-                                              stops: [0.2, 1],
-                                              begin: AlignmentDirectional(0, 1),
-                                              end: AlignmentDirectional(0, -1),
-                                            ),
-                                            borderRadius:
-                                                BorderRadius.circular(10),
-                                          ),
-                                          child: Padding(
-                                            padding:
-                                                EdgeInsetsDirectional.fromSTEB(
-                                                    10, 0, 10, 10),
-                                            child: Row(
-                                              mainAxisSize: MainAxisSize.max,
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
-                                              children: [
-                                                Row(
-                                                  mainAxisSize:
-                                                      MainAxisSize.max,
-                                                  children: [
-                                                    Image.network(
-                                                      'https://picsum.photos/seed/804/600',
-                                                      width: 100,
-                                                      height: 100,
-                                                      fit: BoxFit.cover,
-                                                    ),
-                                                  ],
-                                                ),
-                                                Expanded(
-                                                  child: Padding(
-                                                    padding:
-                                                        EdgeInsetsDirectional
-                                                            .fromSTEB(
-                                                                10, 10, 0, 0),
-                                                    child:
-                                                        SingleChildScrollView(
-                                                      child: Column(
-                                                        mainAxisSize:
-                                                            MainAxisSize.max,
-                                                        crossAxisAlignment:
-                                                            CrossAxisAlignment
-                                                                .start,
-                                                        children: [
-                                                          Text(
-                                                            'SECEND HAND CLOTHES ',
-                                                            style: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .bodyText1
-                                                                .override(
-                                                                  fontFamily:
-                                                                      'Montserrat',
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .normal,
-                                                                ),
-                                                          ),
-                                                          Text(
-                                                            'Diepsloot',
-                                                            style: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .bodyText1
-                                                                .override(
-                                                                  fontFamily:
-                                                                      'Montserrat',
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .normal,
-                                                                ),
-                                                          ),
-                                                          Row(
-                                                            mainAxisSize:
-                                                                MainAxisSize
-                                                                    .max,
-                                                            children: [
-                                                              FaIcon(
-                                                                FontAwesomeIcons
-                                                                    .globe,
-                                                                color: Colors
-                                                                    .black,
-                                                                size: 24,
-                                                              ),
-                                                              Padding(
-                                                                padding:
-                                                                    EdgeInsetsDirectional
-                                                                        .fromSTEB(
-                                                                            10,
-                                                                            0,
-                                                                            0,
-                                                                            0),
-                                                                child: Text(
-                                                                  'AFRIKA TUKKUN',
-                                                                  style: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyText1,
-                                                                ),
-                                                              ),
-                                                            ],
-                                                          ),
-                                                          Row(
-                                                            mainAxisSize:
-                                                                MainAxisSize
-                                                                    .max,
-                                                            mainAxisAlignment:
-                                                                MainAxisAlignment
-                                                                    .spaceBetween,
-                                                            children: [
-                                                              Text(
-                                                                '20 JUNE 2022',
-                                                                style: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyText1,
-                                                              ),
-                                                              Padding(
-                                                                padding:
-                                                                    EdgeInsetsDirectional
-                                                                        .fromSTEB(
-                                                                            10,
-                                                                            0,
-                                                                            0,
-                                                                            0),
-                                                                child:
-                                                                    Container(
-                                                                  width: 100,
-                                                                  height: 20,
-                                                                  decoration:
-                                                                      BoxDecoration(
-                                                                    gradient:
-                                                                        LinearGradient(
-                                                                      colors: [
-                                                                        FlutterFlowTheme.of(context)
-                                                                            .primaryColor,
-                                                                        FlutterFlowTheme.of(context)
-                                                                            .secondaryText
-                                                                      ],
-                                                                      stops: [
-                                                                        0,
-                                                                        1
-                                                                      ],
-                                                                      begin:
-                                                                          AlignmentDirectional(
-                                                                              0,
-                                                                              -1),
-                                                                      end: AlignmentDirectional(
-                                                                          0, 1),
-                                                                    ),
-                                                                    borderRadius:
-                                                                        BorderRadius.circular(
-                                                                            10),
-                                                                  ),
-                                                                  child: Row(
-                                                                    mainAxisSize:
-                                                                        MainAxisSize
-                                                                            .max,
-                                                                    mainAxisAlignment:
-                                                                        MainAxisAlignment
-                                                                            .spaceEvenly,
-                                                                    children: [
-                                                                      Text(
-                                                                        'CLOSED',
-                                                                        style: FlutterFlowTheme.of(context)
-                                                                            .bodyText1
-                                                                            .override(
-                                                                              fontFamily: 'Montserrat',
-                                                                              color: FlutterFlowTheme.of(context).primaryBackground,
-                                                                              fontWeight: FontWeight.normal,
-                                                                            ),
-                                                                      ),
-                                                                    ],
-                                                                  ),
-                                                                ),
-                                                              ),
-                                                            ],
-                                                          ),
-                                                        ],
-                                                      ),
-                                                    ),
-                                                  ),
-                                                ),
-                                              ],
-                                            ),
-                                          ),
-                                        ),
-                                      ),
+                                     
                                     ],
                                   ),
                                 ),
@@ -883,6 +447,7 @@ class _DonationsWidgetState extends State<DonationsWidget> {
           ),
         ),
       ),
+    drawer: DrawerWidget(),
     );
   }
 }

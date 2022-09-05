@@ -1,8 +1,9 @@
+import 'package:easy_doner/confirm_donation/confirm_donation_widget.dart';
+import 'package:get/get.dart';
+
 import '../flutter_flow/flutter_flow_theme.dart';
-import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class DonateWidget extends StatefulWidget {
   const DonateWidget({Key? key}) : super(key: key);
@@ -16,7 +17,7 @@ class _DonateWidgetState extends State<DonateWidget> {
   Widget build(BuildContext context) {
     return FFButtonWidget(
       onPressed: () {
-        print('Button pressed ...');
+        Get.to(() => ConfirmDonationWidget());
       },
       text: 'DONATE',
       options: FFButtonOptions(

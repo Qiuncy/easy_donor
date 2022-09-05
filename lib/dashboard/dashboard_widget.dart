@@ -1,6 +1,8 @@
+import 'package:easy_doner/category/category_widget.dart';
 import 'package:easy_doner/components/drawerWidget.dart';
 import 'package:easy_doner/dashboard/categoryController.dart';
 import 'package:easy_doner/dashboard/instituationsController.dart';
+import 'package:easy_doner/login/loginController.dart';
 import 'package:get/get.dart';
 
 import '../components/account_widget.dart';
@@ -20,12 +22,10 @@ class _DashboardWidgetState extends State<DashboardWidget> {
   final scaffoldKey = GlobalKey<ScaffoldState>();
   final CategoryController categoryController = Get.put(CategoryController());
   final InstituationController instituationController = Get.put(InstituationController());
+  final LoginController loginController= Get.put(LoginController());
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-
-
-
       key: scaffoldKey,
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(60),
@@ -119,25 +119,30 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                           child: Column(
                             mainAxisSize: MainAxisSize.max,
                             children: [
-                              Container(
-                                width: 80,
-                                height: 80,
-                                decoration: BoxDecoration(
-                                  color: Color(0xFF824588),
-                                  borderRadius: BorderRadius.circular(10),
-                                ),
-                                child: Row(
-                                  mainAxisSize: MainAxisSize.max,
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceEvenly,
-                                  children: [
-                                    Icon(
-                                      Icons.read_more,
-                                      color: FlutterFlowTheme.of(context)
-                                          .primaryBackground,
-                                      size: 30,
-                                    ),
-                                  ],
+                              InkWell(
+                                onTap: (() {
+                                  Get.to(() => CategoryWidget());
+                                }),
+                                child: Container(
+                                  width: 80,
+                                  height: 80,
+                                  decoration: BoxDecoration(
+                                    color: Color(0xFF824588),
+                                    borderRadius: BorderRadius.circular(10),
+                                  ),
+                                  child: Row(
+                                    mainAxisSize: MainAxisSize.max,
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceEvenly,
+                                    children: [
+                                      Icon(
+                                        Icons.read_more,
+                                        color: FlutterFlowTheme.of(context)
+                                            .primaryBackground,
+                                        size: 30,
+                                      ),
+                                    ],
+                                  ),
                                 ),
                               ),
                               Text(

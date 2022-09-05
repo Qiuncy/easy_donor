@@ -2,6 +2,7 @@ import 'package:easy_doner/dashboard/dashboard_widget.dart';
 import 'package:easy_doner/dashboard/instituationsController.dart';
 import 'package:easy_doner/index.dart';
 import 'package:easy_doner/login/loginController.dart';
+import 'package:easy_doner/user_dashboard/user_donations_widget.dart';
 import 'package:get/get.dart';
 
 import '../dashboard/categoryController.dart';
@@ -225,9 +226,13 @@ class _LoginWidgetState extends State<LoginWidget> {
                                                           if(c.email.text == "demo@easydonor.org" && c.password.text == "12345"){
                                                             category.fetchCategory();
                                                             instituation.fetchInstituation();
+                                                            LoginController.accessToken = true;
+                                                             LoginController.type = "Donor";
                                                             Get.to(() => DashboardWidget());
-                                                          }else if(c.email.text == "demo1@easydonor.org" && c.password.text == "12345"){
-                                                            Get.to(() => UserDashboardWidget());
+                                                          }else if(c.email.text == "bene@easydonor.org" && c.password.text == "12345"){
+                                                            LoginController.accessToken = true;
+                                                            LoginController.type = "Beneficiary";
+                                                            Get.to(() => UserDonationsWidget());
                                                           }else{
                                                             Get.snackbar(
                                                             "Error",
@@ -326,7 +331,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
                             Text(
-                              'EASY DONER',
+                              'EASY DONOR',
                               style: FlutterFlowTheme.of(context).title1.override(
                                     fontFamily: 'Roboto',
                                     color: FlutterFlowTheme.of(context)

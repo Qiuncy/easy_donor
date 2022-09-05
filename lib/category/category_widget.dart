@@ -1,4 +1,7 @@
 import 'package:easy_doner/components/drawerWidget.dart';
+import 'package:easy_doner/dashboard/categoryController.dart';
+import 'package:easy_doner/dashboard/dashboard_widget.dart';
+import 'package:get/get.dart';
 import '../components/account_widget.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import 'package:flutter/material.dart';
@@ -13,6 +16,7 @@ class CategoryWidget extends StatefulWidget {
 
 class _CategoryWidgetState extends State<CategoryWidget> {
   final scaffoldKey = GlobalKey<ScaffoldState>();
+  final CategoryController categoryController = Get.put(CategoryController());
 
   @override
   Widget build(BuildContext context) {
@@ -64,346 +68,41 @@ class _CategoryWidgetState extends State<CategoryWidget> {
                 runAlignment: WrapAlignment.start,
                 verticalDirection: VerticalDirection.down,
                 clipBehavior: Clip.none,
-                children: [
+                children: [  
+                for(int i = 0; i < categoryController.allCategoryList.length; i++)
                   Padding(
                     padding: EdgeInsetsDirectional.fromSTEB(10, 0, 10, 0),
                     child: Column(
                       mainAxisSize: MainAxisSize.max,
                       children: [
-                        Container(
-                          width: 80,
-                          height: 80,
-                          decoration: BoxDecoration(
-                            color: Color(0xFF824588),
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                          child: Row(
-                            mainAxisSize: MainAxisSize.max,
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              FaIcon(
-                                FontAwesomeIcons.briefcaseMedical,
-                                color: FlutterFlowTheme.of(context)
-                                    .primaryBackground,
-                                size: 30,
-                              ),
-                            ],
-                          ),
-                        ),
-                        Text(
-                          'FOOD',
-                          style: FlutterFlowTheme.of(context)
-                              .bodyText1
-                              .override(
-                                fontFamily: 'Montserrat',
-                                color:
-                                    FlutterFlowTheme.of(context).primaryBtnText,
-                                fontWeight: FontWeight.normal,
-                              ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(10, 0, 10, 0),
-                    child: Column(
-                      mainAxisSize: MainAxisSize.max,
-                      children: [
-                        Container(
-                          width: 80,
-                          height: 80,
-                          decoration: BoxDecoration(
-                            color: Color(0xFF824588),
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                          child: Row(
-                            mainAxisSize: MainAxisSize.max,
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              FaIcon(
-                                FontAwesomeIcons.graduationCap,
-                                color: FlutterFlowTheme.of(context)
-                                    .primaryBackground,
-                                size: 30,
-                              ),
-                            ],
+                        InkWell(
+                          onTap: (() {
+                            categoryController.addCategory(categoryController.allCategoryList[i].id.toString());
+                            Get.to(() => DashboardWidget());
+                          }),
+                          child: Container(
+                            width: 80,
+                            height: 80,
+                            decoration: BoxDecoration(
+                              color: Color(0xFF824588),
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                            child: Row(
+                              mainAxisSize: MainAxisSize.max,
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                FaIcon(
+                                  FontAwesomeIcons.graduationCap,
+                                  color: FlutterFlowTheme.of(context)
+                                      .primaryBackground,
+                                  size: 30,
+                                ),
+                              ],
+                            ),
                           ),
                         ),
                         Text(
-                          'EDUCATION',
-                          style: FlutterFlowTheme.of(context)
-                              .bodyText1
-                              .override(
-                                fontFamily: 'Montserrat',
-                                color:
-                                    FlutterFlowTheme.of(context).primaryBtnText,
-                                fontWeight: FontWeight.normal,
-                              ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(10, 0, 10, 0),
-                    child: Column(
-                      mainAxisSize: MainAxisSize.max,
-                      children: [
-                        Container(
-                          width: 80,
-                          height: 80,
-                          decoration: BoxDecoration(
-                            color: Color(0xFF824588),
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                          child: Row(
-                            mainAxisSize: MainAxisSize.max,
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              FaIcon(
-                                FontAwesomeIcons.graduationCap,
-                                color: FlutterFlowTheme.of(context)
-                                    .primaryBackground,
-                                size: 30,
-                              ),
-                            ],
-                          ),
-                        ),
-                        Text(
-                          'EDUCATION',
-                          style: FlutterFlowTheme.of(context)
-                              .bodyText1
-                              .override(
-                                fontFamily: 'Montserrat',
-                                color:
-                                    FlutterFlowTheme.of(context).primaryBtnText,
-                                fontWeight: FontWeight.normal,
-                              ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(10, 0, 10, 0),
-                    child: Column(
-                      mainAxisSize: MainAxisSize.max,
-                      children: [
-                        Container(
-                          width: 80,
-                          height: 80,
-                          decoration: BoxDecoration(
-                            color: Color(0xFF824588),
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                          child: Row(
-                            mainAxisSize: MainAxisSize.max,
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              FaIcon(
-                                FontAwesomeIcons.graduationCap,
-                                color: FlutterFlowTheme.of(context)
-                                    .primaryBackground,
-                                size: 30,
-                              ),
-                            ],
-                          ),
-                        ),
-                        Text(
-                          'EDUCATION',
-                          style: FlutterFlowTheme.of(context)
-                              .bodyText1
-                              .override(
-                                fontFamily: 'Montserrat',
-                                color:
-                                    FlutterFlowTheme.of(context).primaryBtnText,
-                                fontWeight: FontWeight.normal,
-                              ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(10, 0, 10, 0),
-                    child: Column(
-                      mainAxisSize: MainAxisSize.max,
-                      children: [
-                        Container(
-                          width: 80,
-                          height: 80,
-                          decoration: BoxDecoration(
-                            color: Color(0xFF824588),
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                          child: Row(
-                            mainAxisSize: MainAxisSize.max,
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              Icon(
-                                Icons.read_more,
-                                color: FlutterFlowTheme.of(context)
-                                    .primaryBackground,
-                                size: 30,
-                              ),
-                            ],
-                          ),
-                        ),
-                        Text(
-                          'MORE',
-                          style: FlutterFlowTheme.of(context)
-                              .bodyText1
-                              .override(
-                                fontFamily: 'Montserrat',
-                                color:
-                                    FlutterFlowTheme.of(context).primaryBtnText,
-                                fontWeight: FontWeight.normal,
-                              ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(10, 0, 10, 0),
-                    child: Column(
-                      mainAxisSize: MainAxisSize.max,
-                      children: [
-                        Container(
-                          width: 80,
-                          height: 80,
-                          decoration: BoxDecoration(
-                            color: Color(0xFF824588),
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                          child: Row(
-                            mainAxisSize: MainAxisSize.max,
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              Icon(
-                                Icons.read_more,
-                                color: FlutterFlowTheme.of(context)
-                                    .primaryBackground,
-                                size: 30,
-                              ),
-                            ],
-                          ),
-                        ),
-                        Text(
-                          'MORE',
-                          style: FlutterFlowTheme.of(context)
-                              .bodyText1
-                              .override(
-                                fontFamily: 'Montserrat',
-                                color:
-                                    FlutterFlowTheme.of(context).primaryBtnText,
-                                fontWeight: FontWeight.normal,
-                              ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(10, 0, 10, 0),
-                    child: Column(
-                      mainAxisSize: MainAxisSize.max,
-                      children: [
-                        Container(
-                          width: 80,
-                          height: 80,
-                          decoration: BoxDecoration(
-                            color: Color(0xFF824588),
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                          child: Row(
-                            mainAxisSize: MainAxisSize.max,
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              Icon(
-                                Icons.read_more,
-                                color: FlutterFlowTheme.of(context)
-                                    .primaryBackground,
-                                size: 30,
-                              ),
-                            ],
-                          ),
-                        ),
-                        Text(
-                          'MORE',
-                          style: FlutterFlowTheme.of(context)
-                              .bodyText1
-                              .override(
-                                fontFamily: 'Montserrat',
-                                color:
-                                    FlutterFlowTheme.of(context).primaryBtnText,
-                                fontWeight: FontWeight.normal,
-                              ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(10, 0, 10, 0),
-                    child: Column(
-                      mainAxisSize: MainAxisSize.max,
-                      children: [
-                        Container(
-                          width: 80,
-                          height: 80,
-                          decoration: BoxDecoration(
-                            color: Color(0xFF824588),
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                          child: Row(
-                            mainAxisSize: MainAxisSize.max,
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              Icon(
-                                Icons.read_more,
-                                color: FlutterFlowTheme.of(context)
-                                    .primaryBackground,
-                                size: 30,
-                              ),
-                            ],
-                          ),
-                        ),
-                        Text(
-                          'MORE',
-                          style: FlutterFlowTheme.of(context)
-                              .bodyText1
-                              .override(
-                                fontFamily: 'Montserrat',
-                                color:
-                                    FlutterFlowTheme.of(context).primaryBtnText,
-                                fontWeight: FontWeight.normal,
-                              ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(10, 0, 10, 0),
-                    child: Column(
-                      mainAxisSize: MainAxisSize.max,
-                      children: [
-                        Container(
-                          width: 80,
-                          height: 80,
-                          decoration: BoxDecoration(
-                            color: Color(0xFF824588),
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                          child: Row(
-                            mainAxisSize: MainAxisSize.max,
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              Icon(
-                                Icons.read_more,
-                                color: FlutterFlowTheme.of(context)
-                                    .primaryBackground,
-                                size: 30,
-                              ),
-                            ],
-                          ),
-                        ),
-                        Text(
-                          'MORE',
+                          categoryController.allCategoryList[i].name.toString(),
                           style: FlutterFlowTheme.of(context)
                               .bodyText1
                               .override(
@@ -418,13 +117,7 @@ class _CategoryWidgetState extends State<CategoryWidget> {
                   ),
                 ],
               ),
-              Container(
-                width: 100,
-                height: 100,
-                decoration: BoxDecoration(
-                  color: FlutterFlowTheme.of(context).secondaryBackground,
-                ),
-              ),
+              
             ],
           ),
         ),

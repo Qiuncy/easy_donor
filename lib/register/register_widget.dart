@@ -105,10 +105,10 @@ class _RegisterWidgetState extends State<RegisterWidget> {
                                                 .secondaryColor,
                                         tabs: [
                                           Tab(
-                                            text: 'DONER',
+                                            text: 'DONOR',
                                           ),
                                           Tab(
-                                            text: 'RECIEVR',
+                                            text: 'RECIEVER',
                                           ),
                                         ],
                                       ),
@@ -966,7 +966,7 @@ class _RegisterWidgetState extends State<RegisterWidget> {
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
                             Text(
-                              'EASY DONER',
+                              'EASY DONOR',
                               style:
                                   FlutterFlowTheme.of(context).title1.override(
                                         fontFamily: 'Roboto',

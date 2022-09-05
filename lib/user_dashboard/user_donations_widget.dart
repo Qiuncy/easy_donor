@@ -1,7 +1,13 @@
 
+import 'package:easy_doner/components/drawerWidget.dart';
+import 'package:easy_doner/user_dashboard/beneficiaryCategoryController.dart';
+import 'package:get/get.dart';
+
+import '../components/account_widget.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+
 
 class UserDonationsWidget extends StatefulWidget {
   const UserDonationsWidget({Key? key}) : super(key: key);
@@ -12,26 +18,19 @@ class UserDonationsWidget extends StatefulWidget {
 
 class _UserDonationsWidgetState extends State<UserDonationsWidget> {
   final scaffoldKey = GlobalKey<ScaffoldState>();
+  final BeneficiaryCategoryController beneficiaryCategoryController = Get.put(BeneficiaryCategoryController());
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       key: scaffoldKey,
       appBar: AppBar(
-        backgroundColor: FlutterFlowTheme.of(context).primaryColor,
-        automaticallyImplyLeading: false,
-        title: Text(
-          'Easy Donor',
-          style: FlutterFlowTheme.of(context).title2.override(
-                fontFamily: 'Roboto',
-                color: Color(0xFF090F13),
-                fontSize: 22,
-              ),
+          backgroundColor: FlutterFlowTheme.of(context).primaryColor,
+          automaticallyImplyLeading: false,
+          leading: AccountWidget(),
+          actions: [],
+          elevation: 2,
         ),
-        actions: [],
-        centerTitle: false,
-        elevation: 2,
-      ),
       backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
       body: SafeArea(
         child: GestureDetector(
@@ -115,7 +114,7 @@ class _UserDonationsWidgetState extends State<UserDonationsWidget> {
                                             CrossAxisAlignment.start,
                                         children: [
                                           Text(
-                                            'SECEND HAND CLOTHES ',
+                                            'Seconf HAND CLOTHES ',
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyText1
                                                 .override(
@@ -124,7 +123,7 @@ class _UserDonationsWidgetState extends State<UserDonationsWidget> {
                                                 ),
                                           ),
                                           Text(
-                                            'Diepsloot',
+                                            'Thembisa',
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyText1
                                                 .override(
@@ -272,7 +271,7 @@ class _UserDonationsWidgetState extends State<UserDonationsWidget> {
                                             CrossAxisAlignment.start,
                                         children: [
                                           Text(
-                                            'SECEND HAND CLOTHES ',
+                                            'FOOD PARCEL',
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyText1
                                                 .override(
@@ -301,7 +300,7 @@ class _UserDonationsWidgetState extends State<UserDonationsWidget> {
                                                 padding: EdgeInsetsDirectional
                                                     .fromSTEB(10, 0, 0, 0),
                                                 child: Text(
-                                                  'AFRIKA TUKKUN',
+                                                  'FOOD BANK SA',
                                                   style: FlutterFlowTheme.of(
                                                           context)
                                                       .bodyText1,
@@ -347,31 +346,34 @@ class _UserDonationsWidgetState extends State<UserDonationsWidget> {
                                                         BorderRadius.circular(
                                                             10),
                                                   ),
-                                                  child: Row(
-                                                    mainAxisSize:
-                                                        MainAxisSize.max,
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .spaceEvenly,
-                                                    children: [
-                                                      Text(
-                                                        'Not yet delivered',
-                                                        style:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .bodyText1
-                                                                .override(
-                                                                  fontFamily:
-                                                                      'Montserrat',
-                                                                  color: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .primaryBackground,
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .normal,
-                                                                ),
-                                                      ),
-                                                    ],
+                                                  child: SingleChildScrollView(
+                                                    child: Row(
+                                                      
+                                                      mainAxisSize:
+                                                          MainAxisSize.max,
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .spaceEvenly,
+                                                      children: [
+                                                        Text(
+                                                          'Not yet delivered',
+                                                          style:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .bodyText1
+                                                                  .override(
+                                                                    fontFamily:
+                                                                        'Montserrat',
+                                                                    color: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .primaryBackground,
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .normal,
+                                                                  ),
+                                                        ),
+                                                      ],
+                                                    ),
                                                   ),
                                                 ),
                                               ),
@@ -429,7 +431,7 @@ class _UserDonationsWidgetState extends State<UserDonationsWidget> {
                                             CrossAxisAlignment.start,
                                         children: [
                                           Text(
-                                            'SECEND HAND CLOTHES ',
+                                            'SPORTS KIT',
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyText1
                                                 .override(
@@ -458,7 +460,7 @@ class _UserDonationsWidgetState extends State<UserDonationsWidget> {
                                                 padding: EdgeInsetsDirectional
                                                     .fromSTEB(10, 0, 0, 0),
                                                 child: Text(
-                                                  'AFRIKA TUKKUN',
+                                                  'SOCCER ACADEMY',
                                                   style: FlutterFlowTheme.of(
                                                           context)
                                                       .bodyText1,
@@ -552,6 +554,7 @@ class _UserDonationsWidgetState extends State<UserDonationsWidget> {
           ),
         ),
       ),
+      drawer: DrawerWidget(),
     );
   }
 }

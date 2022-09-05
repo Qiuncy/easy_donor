@@ -2,6 +2,8 @@ import 'package:easy_doner/dashboard/instituationsModel.dart';
 import "package:http/http.dart" as http;
 import '../dashboard/categoryModel.dart';
 import '../login/loginModel.dart';
+import '../user_dashboard/beneficiaryDonationModel.dart';
+import '../user_dashboard/beneficiaryInstitutionModel.dart';
 class RemoteServices {
   static var client = http.Client();
 
@@ -101,7 +103,7 @@ static Future<List<Category>?> fetchAllCategory() async {
     headers: {
       'Content-Type': 'application/json',
       'Accept': 'application/json',
-      'Authorization': 'Bearer 74|7MI42UrVN9kYqRcU2yisVpREaKZypYoNYHCaDiN6',
+      'Authorization': 'Bearer 80|DeUCxcZsYa7NVzpSN6WboKX42XaGSdJjf0N7Zm2X',
       });
 
       if(response.statusCode == 200){
@@ -113,20 +115,56 @@ static Future<List<Category>?> fetchAllCategory() async {
       }
   }
 
-  static Future<List<Category>?> fetchBeneficiaryInstitution() async {
+  static Future<List<BeneficiaryInstitution>?> fetchBeneficiaryInstitution() async {
     var response = await client.get(Uri.parse("https://easydonor.mrndemo.co.za/api/beneficiary/institutions"),
     headers: {
       'Content-Type': 'application/json',
       'Accept': 'application/json',
-      'Authorization': 'Bearer 74|7MI42UrVN9kYqRcU2yisVpREaKZypYoNYHCaDiN6',
+      'Authorization': 'Bearer 80|DeUCxcZsYa7NVzpSN6WboKX42XaGSdJjf0N7Zm2X',
       });
 
       if(response.statusCode == 200){
           var jsonString = response.body;
-          return categoryFromJson(jsonString);
+          return beneficiaryInstitutionFromJson(jsonString);
 
       }else{
         return null;
+      }
+  }
+
+  static Future<List<BeneficiaryDonation>?> fetchBeneficiaryDonation() async {
+    var response = await client.get(Uri.parse("https://easydonor.mrndemo.co.za/api/beneficiary/institutions"),
+    headers: {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+      'Authorization': 'Bearer 80|DeUCxcZsYa7NVzpSN6WboKX42XaGSdJjf0N7Zm2X',
+      });
+
+      if(response.statusCode == 200){
+          var jsonString = response.body;
+          return beneficiaryDonationFromJson(jsonString);
+
+      }else{
+        return null;
+      }
+  }
+  static Future<String ?> addInstitution(String id) async {
+    
+    
+    var response = await client.post(Uri.parse("https://easydonor.mrndemo.co.za/api/beneficiary/add-institution"),
+    headers: {
+      'Accept': 'application/json',
+      'Authorization': 'Bearer 80|DeUCxcZsYa7NVzpSN6WboKX42XaGSdJjf0N7Zm2X',
+      }, 
+      body: {"institution_id": id },
+      );
+      
+      if(response.statusCode == 200){
+       
+          return "Success";
+       
+      }else{
+        return response.toString();
       }
   }
 }

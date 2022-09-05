@@ -1,6 +1,7 @@
 
 import 'package:easy_doner/index.dart';
 import 'package:easy_doner/login/loginController.dart';
+import 'package:easy_doner/user_dashboard/user_donations_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -15,7 +16,7 @@ class DrawerWidget extends StatelessWidget {
           children: [
             const DrawerHeader(
               decoration: BoxDecoration(
-                color: Colors.blue,
+                color: Color(0xff652D6A),
               ),
               child: Text('Easy Donor'),
             ),
@@ -32,7 +33,12 @@ class DrawerWidget extends StatelessWidget {
             ListTile(
               title: const Text('Donations'),
               onTap: () {
-                Get.to(()=> DonationsWidget());
+                if(LoginController.type == "Donor"){
+                    Get.to(()=> DonationsWidget());
+                }else{
+                    Get.to(()=> UserDonationsWidget());
+                }
+                
               },
             ),
             ListTile(

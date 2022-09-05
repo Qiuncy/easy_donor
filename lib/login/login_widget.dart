@@ -223,7 +223,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                                                     child:InkWell(
                                                       onTap: () async {
                                                       
-                                                          if(c.email.text == "demo@easydonor.org" && c.password.text == "12345"){
+                                                          if(c.email.text == "donor@easydonor.org" && c.password.text == "12345"){
                                                             category.fetchCategory();
                                                             instituation.fetchInstituation();
                                                             LoginController.accessToken = true;
@@ -232,7 +232,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                                                           }else if(c.email.text == "bene@easydonor.org" && c.password.text == "12345"){
                                                             LoginController.accessToken = true;
                                                             LoginController.type = "Beneficiary";
-                                                            Get.to(() => UserDonationsWidget());
+                                                            Get.to(() => UserDashboardWidget());
                                                           }else{
                                                             Get.snackbar(
                                                             "Error",
